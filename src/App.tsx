@@ -1,7 +1,6 @@
-
+/*
 import './App.css'
 import BarChart1 from './Pages/BarChart1'
-import WaveChart1 from './Pages/WaveChart1'
 
 function App() {
  // const [count, setCount] = useState(0)
@@ -9,9 +8,67 @@ function App() {
   return (
     <>
       <BarChart1></BarChart1>
-      <WaveChart1></WaveChart1>
     </>
   )
 }
 
-export default App
+export default App*/
+
+import React, { useState } from 'react';
+import AudioToText from "./components/AudioToText";
+import Container from "react-bootstrap/Container";
+//import Video from "./components/Video"
+//import Login from './components/Login';
+//import Dashboard from "./components/Dashboard";
+import Text from './components/Text';
+import MainLayout from './components/MainLayout';
+import Dashboard2 from './components/Dashboard2';
+import BarChart1 from './Pages/BarChart1';
+import Analytics from "./components/Analytics"
+import DashboardAdmin from './components/DashboardAdmin';
+import Tests1 from './components/Tests1';
+
+function App() {
+
+  const [showLogin, setShowLogin] = useState(true);
+  const [currentComponent, setCurrentComponent] = useState(1);
+  //const [showAudioToText, setShowAudioToText] = useState(false);
+  //const [nextClicked, setNextClicked] = useState(false);
+
+  /*const nextPage = () => {
+    setShowLogin(!showLogin);
+    //setShowAudioToText(true);
+    //setNextClicked(true);
+  }*/
+
+  /*const renderNextComponent = () => {
+    setCurrentComponent(currentComponent + 1);
+  };
+
+  const renderComponent = () => {
+    switch (currentComponent) {
+      case 1:
+        return <Login onNext={renderNextComponent} />;
+      case 2:
+       return <Dashboard2/>;
+      case 3:
+        return <AudioToText onNext={renderNextComponent} />;
+      case 4:
+        return <Text onNext={renderNextComponent}/>;
+      case 5:
+        return <Dashboard  />;
+      default:
+        return null;
+    }
+  };
+  */
+
+  return (
+    <Container className="">
+      <Tests1></Tests1>
+    </Container>
+  );
+}
+
+export default App;
+

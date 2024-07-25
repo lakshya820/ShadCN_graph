@@ -1,5 +1,6 @@
 "use client"
 
+import "../css/BarChart1.css"
 import { TrendingUp } from "lucide-react"
 import { Bar, BarChart, CartesianGrid, LabelList, XAxis, YAxis } from "recharts"
 
@@ -44,8 +45,8 @@ export function BarChart1() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Bar Chart - Custom Label</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
+        <CardTitle>Statitics</CardTitle>
+        
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
@@ -108,4 +109,4 @@ export function BarChart1() {
   )
 }
 
-export default BarChart1;
+export default BarChart1
