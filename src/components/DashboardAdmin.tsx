@@ -17,7 +17,6 @@ const DashboardAdmin: React.FC = () => {
     return (
         <React.Fragment>
             <div className="admin_dashboard">
-                <MainLayout>
                     <div className="dashboard_header">
                         <div className="dashboard_center">
                             <div className="dashboard_chart1">
@@ -25,7 +24,7 @@ const DashboardAdmin: React.FC = () => {
                             </div>
                         </div>
                     </div>
-                </MainLayout>
+
           </div>
         </React.Fragment>
     );

@@ -1,6 +1,8 @@
 .tests1 {
     display: flex;
     width: 100vw;
+    padding-left: 314px;
+    padding-top: 60px;
 }
   
 .tests1_content{

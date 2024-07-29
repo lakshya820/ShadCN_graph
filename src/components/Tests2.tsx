@@ -24,7 +24,6 @@ import '../css/Tests2.css';
 const Tests2: React.FC = () => {
   return (
     <div className="tests2">
-        <MainLayout>
             <div className="tests2_content">
                 
                 <div className="Card">
@@ -56,7 +55,6 @@ const Tests2: React.FC = () => {
                     </Card>
                 </div>
             </div>
-        </MainLayout>
     </div>
   )
 }
