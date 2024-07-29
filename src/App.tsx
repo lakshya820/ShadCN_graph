@@ -72,8 +72,8 @@ function App() {
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/main" element={<MainLayout />}>
-        <Route path="dashboard" element={<Dashboard2 />} />
         <Route path="tests1" element={<Tests1 />} />
+        <Route path="dashboard" element={<Dashboard2 />} />
         <Route path="tests2" element={<Tests2 />} />
       </Route>
     </Routes>
