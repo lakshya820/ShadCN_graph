@@ -1,12 +1,15 @@
 //import logo from './logo.svg';
 //import './App.css';
 
-import { useState , useEffect } from 'react';
+import { useState, useEffect, MouseEvent } from 'react';
 import VideoPlayer from './VideoPlayer';
 
-function Video({onNext}) {
+interface VideoProps {
+  onNext: () => void;
+}
 
-  const [videoId, setVideoId] = useState('cdn')
+const Video: React.FC<VideoProps> = ({ onNext }) => {
+  const [videoId, setVideoId] = useState('cdn');
   const [showNextButton, setShowNextButton] = useState(false);
 
   useEffect(() => {
@@ -14,9 +17,9 @@ function Video({onNext}) {
     playVideo(null, videoId);
   }, []); // Empty dependency array ensures this effect runs only once on mount
 
-  function playVideo(e, videoId){
+  function playVideo(e: MouseEvent<HTMLButtonElement> | null, videoId: string) {
     if (e) e.preventDefault();
-    setVideoId(videoId)
+    setVideoId(videoId);
     setShowNextButton(true);
   }
 

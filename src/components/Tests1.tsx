@@ -1,4 +1,10 @@
 import { default as React, useState } from "react";
+import { Button } from "../components/ui/button"
+import { Input } from "../components/ui/input"
+import { Label } from "../components/ui/label"
+import MainLayout from "./MainLayout";
+import '../css/Tests1.css';
+import { useNavigate } from 'react-router-dom';
 import {
     Card,
     CardContent,
@@ -6,25 +12,30 @@ import {
     CardFooter,
     CardHeader,
     CardTitle,
-  } from "../components/ui/card"
+  } from "../components/ui/card";
 
-import { Button } from "../components/ui/button"
-import { Input } from "../components/ui/input"
-import { Label } from "../components/ui/label"
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../components/ui/select"
-import MainLayout from "./MainLayout";
-import '../css/Tests1.css';
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+  } from "../components/ui/select";
+  
+
 
 const Tests1: React.FC = () => {
+
+    const navigate = useNavigate();
+
+    const handleNavigateToTests2 = () => {
+        navigate('/main/tests2');
+      };
+
+
   return (
     <div className="tests1">
-        <MainLayout>
+        
             <div className="tests1_content">
                 <div className="tests1_header">
                     <p>Tests</p>
@@ -50,13 +61,13 @@ const Tests1: React.FC = () => {
                         </form>
                     </CardContent>
                     <CardFooter className="flex justify-between">
-                        <Button variant="outline">Start Test</Button>
+                        <Button variant="outline" onClick={handleNavigateToTests2}>Start Test</Button>
                         <Button>Cancel</Button>
                     </CardFooter>
                     </Card>
                 </div>
             </div>
-        </MainLayout>
+        
     </div>
   )
 }

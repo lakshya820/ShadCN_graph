@@ -5,11 +5,10 @@
 }
 
 .content {
-  width: 100vw;
+ width: 100vw;
  display: flex;
  padding-left: 314px;
  padding-top: 60px;
  height: 100vh;
-  
 }
 

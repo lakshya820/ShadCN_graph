@@ -10,7 +10,7 @@ const Dashboard2: React.FC = () => {
     return (
         <React.Fragment>
             <div className="dashboard">
-                <MainLayout>
+                
                     <div className="boxes">
                         <div className="box">
                             <h2>Test assigned</h2>
@@ -66,7 +66,7 @@ const Dashboard2: React.FC = () => {
                         </table>
                     </div>
                     
-                </MainLayout>
+                
           </div>
         </React.Fragment>
     );

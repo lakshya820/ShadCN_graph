@@ -2,13 +2,15 @@ import React, { useEffect, useState } from "react";
 import Image from "../assets/image.png";
 import Logo from "../assets/logo.png";
 import GoogleSvg from "../assets/icons8-google.svg";
-import { FaEye } from "react-icons/fa6";
-import { FaEyeSlash } from "react-icons/fa6";
+import { FaEye, FaEyeSlash } from "react-icons/fa6";
+import { useNavigate } from 'react-router-dom';
 
+//interface LoginProps {
+  //onNext: () => void;
+//}
 
-
-function Login({onNext}) {
-  const [ showPassword, setShowPassword ] = useState(false);
+const Login: React.FC = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const [showLogin, setShowLogin] = useState(true);
   const [showVideo, setShowVideo] = useState(false);
   const [nextClicked, setNextClicked] = useState(false);
@@ -19,6 +21,13 @@ function Login({onNext}) {
     setNextClicked(true);
   }
 
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    // Perform login logic here
+    navigate('/main/dashboard');
+  };
+
   return (
     <div className="login-main">
       <div className="login-left">
@@ -26,7 +35,7 @@ function Login({onNext}) {
       </div>
       <div className="login-right">
         <div className="login-logo">
-            <img src={Logo} alt="Logo" />
+          <img src={Logo} alt="Logo" />
         </div>
         <div className="login-right-container">
           <h2>VOICE TRAINING</h2>
@@ -63,7 +72,7 @@ function Login({onNext}) {
               </a>
             </div>
             <div className="login-center-buttons">
-              <button type="button" className="login-button" onClick={onNext}>Login</button>
+              <button type="button" className="login-button" onClick={handleLogin}>Login</button>
               <button type="button" className="signup-button">
                 Sign up
               </button>
