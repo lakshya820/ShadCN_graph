@@ -4,6 +4,7 @@ import Logo from "../assets/logo.png";
 import GoogleSvg from "../assets/icons8-google.svg";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom';
+import "../css/Login.css"
 
 //interface LoginProps {
   //onNext: () => void;

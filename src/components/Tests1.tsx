@@ -1,26 +1,9 @@
 import { default as React, useState } from "react";
-import { Button } from "../components/ui/button"
-import { Input } from "../components/ui/input"
-import { Label } from "../components/ui/label"
+
 import MainLayout from "./MainLayout";
 import '../css/Tests1.css';
 import { useNavigate } from 'react-router-dom';
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-  } from "../components/ui/card";
 
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-  } from "../components/ui/select";
   
 
 
@@ -35,39 +18,24 @@ const Tests1: React.FC = () => {
 
   return (
     <div className="tests1">
-        
-            <div className="tests1_content">
                 <div className="tests1_header">
-                    <p>Tests</p>
+                    <h1>Tests</h1>
                 </div>
-                <div className="Card">
-                    <Card className="w-[800px]">
-                    <CardHeader>
-                        <CardTitle>Empathy</CardTitle>
-                        <CardDescription>This test is focused to teach learners how to empathize with users, when they are upset because of the issue they are facing.</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                        <form>
-                        <div className="grid w-full items-center gap-4">
-                            <div className="flex flex-col space-y-1.5">
-                            <Label htmlFor="name">Date</Label>
-                            
-                            </div>
-                            <div className="flex flex-col space-y-1.5">
-                            <Label htmlFor="framework">Duration</Label>
-                            
-                            </div>
-                        </div>
-                        </form>
-                    </CardContent>
-                    <CardFooter className="flex justify-between">
-                        <Button variant="outline" onClick={handleNavigateToTests2}>Start Test</Button>
-                        <Button>Cancel</Button>
-                    </CardFooter>
-                    </Card>
+                <div className="tests1_card">
+                    <div className="card_header">
+                    <p>Empathy</p>
+                    </div>
+                    <div className="card_label1">
+                            <p>This test is focused to teach learners how to empathize with users, when they are upset because of the issue they are facing.</p>
+                    </div>
+                    <div className="card_label2">
+                            <p> Date: 08/12/2022        Time: 12:00         Duration: 15 mins</p>
+                    </div>
+                    <div className="card_buttons">
+                            <button className="card_button_start" onClick={handleNavigateToTests2}>Start Test</button>
+                            <button className="card_button_cancel">Cancel</button>
+                    </div>
                 </div>
-            </div>
-        
     </div>
   )
 }
