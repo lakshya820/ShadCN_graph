@@ -3,7 +3,7 @@ import React from 'react';
 import '../css/Header.css';
 import '../css/NavBar.css';
 import '../css/QuestionMain.css'
-import {Card,CardDescription,CardHeader,CardTitle,} from "./ui/card";
+import {Card,CardDescription,CardHeader,CardTitle} from "./ui/card";
 import Timer from "../lib/test-timer";
 import Header from './Header';
 
@@ -55,9 +55,10 @@ const ExamLayout: React.FC<MainLayoutProps> = ({children}) => {
     }
   };
 
-  // window.onload=()=>{
-  //   document.getElementById('overlay')!.style.display="block";
-  // }
+  window.onload=()=>{
+    document.getElementById('overlay')!.style.display="block";
+    document.getElementById('audio')?.click();
+  }
 
   // document.onvisibilitychange=()=>{
   //   console.log('visiblity state: ', document.visibilityState);
@@ -68,18 +69,19 @@ const ExamLayout: React.FC<MainLayoutProps> = ({children}) => {
   //   }
   // };
 
-  document.addEventListener('fullscreenchange', () => {
-    if(!disable_visiblity){
-      if (!document.fullscreenElement) {
-        stop_exam("intruption");
-      }
-    }
-  });
+  // document.addEventListener('fullscreenchange', () => {
+  //   if(!disable_visiblity){
+  //     if (!document.fullscreenElement) {
+  //       stop_exam("intruption");
+  //     }
+  //   }
+  // });
 
-  // const handlefullscreen=()=>{
-  //   document.documentElement.requestFullscreen();
-  //   document.getElementById('overlay')!.style.display="none";
-  // }
+  const handleStartExam=()=>{
+    document.getElementById('overlay')!.style.display="none";
+    document.getElementById('start_timer')?.click();
+    document.getElementById('start_timer')?.remove();
+  }
 
   function show_score(){
     return "80%";
@@ -87,6 +89,12 @@ const ExamLayout: React.FC<MainLayoutProps> = ({children}) => {
 
   return (
     <div>
+      <div className='overlay' id='overlay'>
+        <div className='overlay-content'>
+          <div className='overlay-elem'><span>For the exam you have to go to a full screen mode. In between exam if you exit from full screen mode then the exam will be terminated. Click on the ok to start the exam.</span></div>
+          <div className='overlay-elem'><button className='button' onClick={handleStartExam}>Ok</button></div>
+        </div>            
+      </div>
       <div className='exam-pnl' id="exam-pnl"></div>  
       <Header />
       <div className="tests2" id='tst_pnl'>          
@@ -98,6 +106,7 @@ const ExamLayout: React.FC<MainLayoutProps> = ({children}) => {
                 <CardTitle>Empathy</CardTitle>
                 <CardDescription>This test is focused to teach learners how to empathize with users, when they are upset because of the issue they are facing.</CardDescription>
               </CardHeader>
+              {/* <audio id="audio" autoPlay></audio> */}
               {children}
               </Card>
             </div>

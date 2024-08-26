@@ -1,14 +1,14 @@
 import { default as React, useEffect, useState, useRef } from "react";
 import {CardContent,CardFooter} from "./ui/card";
-import { Button } from "./ui/button";
 import { Label } from "./ui/label";
+import { Button } from "./ui/button";
 import '../css/Tests2.css';
 import * as io from "socket.io-client";
 import getLexResponse from '../lib/lex-bot';
 import ExamLayout from "./ExamLayout";
 
-var request_content_type = import.meta.env.REACT_APP_REQUEST_CONTENT_TYPE;
-var input_stream = import.meta.env.REACT_APP_INITIAL_INPUT;
+var request_content_type = import.meta.env.VITE_APP_REQUEST_CONTENT_TYPE;
+var input_stream = import.meta.env.VITE_APP_INITIAL_INPUT;
 
 const sampleRate = 16000;
 var isFirstLexCall = true;
@@ -46,6 +46,13 @@ const VoiceTest: React.FC = () => {
   function callLexBot(input_text: any){
     //disconnect();
     getLexResponse(input_text, request_content_type)
+  }
+
+  //Initial call to lex-bot.js when the page loads.
+  if(isFirstLexCall){
+    console.log("Fist call to lex.");
+    callLexBot(input_stream);
+    isFirstLexCall=false;
   }
 
   const speechRecognized = (data: WordRecognized) => {
@@ -136,7 +143,7 @@ const VoiceTest: React.FC = () => {
           audioContextRef.current = new window.AudioContext();
           console.log("conneected 0.1");
 
-          await audioContextRef.current.audioWorklet.addModule("/worklets/recorderWorkletProcessor.js");        
+          await audioContextRef.current.audioWorklet.addModule("/src/worklets/recorderWorkletProcessor.js");        
           console.log("conneected 0.2");
 
           audioContextRef.current.resume();
@@ -145,6 +152,7 @@ const VoiceTest: React.FC = () => {
           audioInputRef.current = audioContextRef.current.createMediaStreamSource(stream);
 
           processorRef.current = new AudioWorkletNode(audioContextRef.current,"recorder.worklet");
+          console.log(`audio contect ref current`, new AudioWorkletNode(audioContextRef.current,"recorder.worklet"));
 
           processorRef.current.connect(audioContextRef.current.destination);
           audioContextRef.current.resume();
@@ -155,14 +163,13 @@ const VoiceTest: React.FC = () => {
           console.log("audio added to connect.");
 
           processorRef.current.port.onmessage = (event: any) => {
-            console.log(`Event data: `, event.data);
             const audioData = event.data;
             console.log(`Audio data: `, audioData.audio);
             connection.emit("send_audio_data", { audio: audioData });
           };
           console.log("conneected 3.");
 
-          //Initial call to lex-bot.js when the page loads.
+          // //Initial call to lex-bot.js when the page loads.
           // if(isFirstLexCall){
           //   console.log("Fist call to lex.");
           //   callLexBot(input_stream);
@@ -195,7 +202,7 @@ const VoiceTest: React.FC = () => {
 
   const handleButtonSubmit = (()=>{
     //if(window.confirm("Do you want to continue with you answer.\nClick 'Ok' to continue else 'Cancel' to answer again.")){
-      //callLexBot(textAreaValue);
+      callLexBot(textAreaValue);
       resetComponent();
     //}else{
     //    resetComponent();
@@ -215,32 +222,31 @@ const VoiceTest: React.FC = () => {
   return (
     <ExamLayout>
       <div>
-        <Button
+        {/* <Button
           id = "start_conv" 
           onClick={connect}
           disabled={isRecording}
         >
         Start Conversation
-        </Button>
+        </Button> */}
         <Button
-          id = "end_conv" 
+          id = "end_rec" 
           onClick={disconnect}
-          disabled={!isRecording}
-        >
-          End Conversation
-        </Button>
+          disabled={!isRecording}></Button>
       </div>
       <CardContent>
         <div className="grid w-full items-center gap-4">
           <div className="flex flex-col space-y-1.5">
           {/* <Label htmlFor="name">#Question 1</Label> */}
+          <span><audio id="audio" controls autoplay></audio></span>
           <Label htmlFor="marker"><span id="ques-disp">Loding question...</span></Label>
           {/* <Input id="name" placeholder="Answer Transcript..."/> */}
-          <div><span><textarea readOnly rows={10} cols={50} value={textAreaValue}>{textAreaValue}</textarea></span></div>
+          <div><span><textarea rows={10} cols={50} value={textAreaValue}>{textAreaValue}</textarea></span></div>
           </div>
         </div>
       </CardContent>
       <CardFooter className="flex justify-between">
+        <Button id="start_rec" type="button" onClick={connect} disabled={isRecording}>Mic Start</Button>
         <Button variant="outline" onClick={handleButtonClear}>Clear</Button>
         <Button variant="outline" onClick={handleButtonRemoveLast}>Remove last sentence</Button>
         <Button onClick={handleButtonSubmit}>Submit</Button>
